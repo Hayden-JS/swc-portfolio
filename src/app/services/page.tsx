@@ -1,0 +1,205 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowRight, Check, Monitor, MapPin, TrendingUp, BadgeCheck } from 'lucide-react';
+
+export default function ServicesPage() {
+  const services = [
+    {
+      id: "web-design",
+      title: "Website Design & Management",
+      icon: Monitor,
+      description: "Your website is your digital storefront — and first impressions matter. We build high-performance, conversion-focused websites that represent your brand professionally and turn visitors into customers.",
+      includes: [
+        "Custom website design tailored to your brand",
+        "Mobile-first, responsive development",
+        "SEO-optimized structure and content",
+        "Fast loading speeds (sub-2-second load times)",
+        "Ongoing management & deployment support",
+        "SSL security & reliable hosting guidance"
+      ],
+      for: "Local businesses that need a professional website that actually converts visitors into leads and customers.",
+      cta: "Start Your Website Project →",
+      image: null
+    },
+    {
+      id: "seo",
+      title: "Local SEO Services",
+      icon: MapPin,
+      description: "When customers search for businesses like yours, you need to be found. Our local SEO strategies put your business front and center in search results — so you attract more customers in your service area.",
+      includes: [
+        "Local keyword research & strategy",
+        "On-page SEO optimization",
+        "Google Business Profile optimization",
+        "Local citation building & cleanup",
+        "Review management strategy",
+        "Monthly ranking & traffic reports"
+      ],
+      for: "Local businesses that want to dominate search results and attract more customers in their geographic area.",
+      cta: "Get Found Locally →",
+      image: "/assets/seo-visual.png"
+    },
+    {
+      id: "marketing",
+      title: "Digital Marketing",
+      icon: TrendingUp,
+      description: "Effective digital marketing reaches the right audience with the right message at the right time. We create strategic campaigns that build brand awareness, drive traffic, and generate leads.",
+      includes: [
+        "Digital strategy development",
+        "Campaign setup & management",
+        "Audience targeting & segmentation",
+        "Ad creative development",
+        "Conversion tracking & optimization",
+        "Monthly performance reports"
+      ],
+      for: "Businesses that want to scale their online presence and reach more potential customers through targeted marketing.",
+      cta: "Scale Your Marketing →",
+      image: "/assets/marketing-visual.png"
+    },
+    {
+      id: "gbp",
+      title: "Google Business Profile Management",
+      icon: BadgeCheck,
+      description: "Your Google Business Profile is often the first thing customers see when they find you online. We optimize and manage your GBP to maximize visibility, credibility, and customer engagement.",
+      includes: [
+        "GBP setup & optimization",
+        "Category & attribute optimization",
+        "Business description optimization",
+        "Photo & video management",
+        "Review response strategy",
+        "Posts & updates management",
+        "Monthly performance insights"
+      ],
+      for: "Any local business that wants to maximize their presence on Google and attract more local customers.",
+      cta: "Optimize My GBP →",
+      image: "/assets/gbp-visual.png"
+    }
+  ];
+
+  return (
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="section-padding pt-40 md:pt-48 bg-white dark:bg-soft-black">
+        <div className="container-custom text-center animate-in fade-in slide-in-from-bottom duration-1000">
+          <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
+            Our Services
+          </h1>
+          <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10 max-w-3xl mx-auto">
+            Strategic digital solutions built for local business growth.
+          </p>
+        </div>
+      </section>
+
+      {/* Services List */}
+      <section className="section-padding bg-off-white dark:bg-charcoal/10">
+        <div className="container-custom">
+          <div className="space-y-32">
+            {services.map((service, idx) => (
+              <div key={service.id} id={service.id} className={`scroll-mt-32 flex flex-col gap-12 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
+                <div className="lg:w-1/2">
+                  <div className="flex items-center gap-4 mb-6">
+                     <div className="w-12 h-12 bg-teal-accent/10 rounded-xl flex items-center justify-center text-teal-accent">
+                        <service.icon className="w-6 h-6" />
+                     </div>
+                     <h2 className="text-3xl md:text-4xl font-bold text-obsidian dark:text-off-white">
+                      {service.title}
+                    </h2>
+                  </div>
+                  <p className="text-xl text-text-secondary dark:text-text-dark mb-8 leading-relaxed">
+                    {service.description}
+                  </p>
+                  
+                  {service.image && (
+                    <div className="relative h-[300px] w-full mb-8 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 lg:hidden">
+                       <Image 
+                        src={service.image} 
+                        alt={service.title} 
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+
+                  <div className="mb-8 p-6 bg-teal-accent/5 rounded-2xl border border-teal-accent/10">
+                    <h4 className="font-bold text-obsidian dark:text-off-white mb-2">Who It's For:</h4>
+                    <p className="text-text-secondary dark:text-text-dark">{service.for}</p>
+                  </div>
+                  <Link href="/contact" className="btn-primary">
+                    {service.cta} <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
+                </div>
+                
+                <div className="lg:w-1/2 w-full">
+                  {service.image ? (
+                    <div className="relative h-[500px] w-full hidden lg:block rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-xl group">
+                      <Image 
+                        src={service.image} 
+                        alt={service.title} 
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/40 to-transparent"></div>
+                      <div className="absolute bottom-8 left-8">
+                         <div className="bg-white dark:bg-charcoal p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800">
+                            <h4 className="text-lg font-bold mb-4 text-obsidian dark:text-off-white">What's Included:</h4>
+                            <ul className="space-y-3">
+                              {service.includes.slice(0, 3).map((item, index) => (
+                                <li key={index} className="flex items-start gap-3 text-sm text-text-secondary dark:text-text-dark">
+                                  <Check className="w-5 h-5 text-teal-accent flex-shrink-0" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                              <li className="text-teal-accent text-sm font-medium">+ and more</li>
+                            </ul>
+                         </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="bg-white dark:bg-charcoal p-8 md:p-12 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm w-full">
+                      <h4 className="text-xl font-bold mb-6 text-obsidian dark:text-off-white">What's Included:</h4>
+                      <ul className="space-y-4">
+                        {service.includes.map((item, index) => (
+                          <li key={index} className="flex items-start gap-3 text-text-secondary dark:text-text-dark">
+                            <Check className="w-6 h-6 text-teal-accent flex-shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {/* For mobile view when image is present, still show full list */}
+                  {service.image && (
+                    <div className="bg-white dark:bg-charcoal p-8 mt-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm w-full lg:hidden">
+                      <h4 className="text-xl font-bold mb-6 text-obsidian dark:text-off-white">What's Included:</h4>
+                      <ul className="space-y-4">
+                        {service.includes.map((item, index) => (
+                          <li key={index} className="flex items-start gap-3 text-text-secondary dark:text-text-dark">
+                            <Check className="w-6 h-6 text-teal-accent flex-shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="section-padding bg-charcoal text-off-white">
+        <div className="container-custom text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Need a Custom Solution?</h2>
+          <p className="text-xl text-text-dark/60 mb-10 max-w-2xl mx-auto">
+            Not sure which service is right for you? Let's talk about your business goals and find the best approach.
+          </p>
+          <Link href="/contact" className="btn-primary text-lg">
+            Schedule a Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
