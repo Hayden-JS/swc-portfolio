@@ -29,7 +29,7 @@ export default function Home() {
             <div className="relative lg:h-[600px] w-full animate-in fade-in slide-in-from-right duration-1000">
               <div className="absolute inset-0 bg-teal-accent/10 rounded-3xl blur-3xl -z-10 translate-x-12 translate-y-12"></div>
               <Image 
-                src="/assets/hero-visual.png" 
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/assets/hero-visual.png`} 
                 alt="SWC Digital Excellence" 
                 fill
                 className="object-contain"

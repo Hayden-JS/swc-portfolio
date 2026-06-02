@@ -111,7 +111,7 @@ export default function ServicesPage() {
                   {service.image && (
                     <div className="relative h-[300px] w-full mb-8 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 lg:hidden">
                        <Image 
-                        src={service.image} 
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${service.image}`} 
                         alt={service.title} 
                         fill
                         className="object-cover"
@@ -132,7 +132,7 @@ export default function ServicesPage() {
                   {service.image ? (
                     <div className="relative h-[500px] w-full hidden lg:block rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-xl group">
                       <Image 
-                        src={service.image} 
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${service.image}`} 
                         alt={service.title} 
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
