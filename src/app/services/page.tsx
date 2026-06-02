@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { ArrowRight, Check, Monitor, MapPin, TrendingUp, BadgeCheck } from 'lucide-react';
 
 export default function ServicesPage() {
@@ -79,14 +82,19 @@ export default function ServicesPage() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="section-padding pt-40 md:pt-48 bg-white dark:bg-soft-black">
-        <div className="container-custom text-center animate-in fade-in slide-in-from-bottom duration-1000">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="container-custom text-center"
+        >
           <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
             Our Services
           </h1>
           <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10 max-w-3xl mx-auto">
             Strategic digital solutions built for local business growth.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Services List */}
@@ -94,7 +102,15 @@ export default function ServicesPage() {
         <div className="container-custom">
           <div className="space-y-32">
             {services.map((service, idx) => (
-              <div key={service.id} id={service.id} className={`scroll-mt-32 flex flex-col gap-12 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}>
+              <motion.div 
+                key={service.id} 
+                id={service.id} 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className={`scroll-mt-32 flex flex-col gap-12 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
+              >
                 <div className="lg:w-1/2">
                   <div className="flex items-center gap-4 mb-6">
                      <div className="w-12 h-12 bg-teal-accent/10 rounded-xl flex items-center justify-center text-teal-accent">
@@ -109,14 +125,19 @@ export default function ServicesPage() {
                   </p>
                   
                   {service.image && (
-                    <div className="relative h-[300px] w-full mb-8 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 lg:hidden">
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      className="relative h-[300px] w-full mb-8 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 lg:hidden"
+                    >
                        <Image 
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${service.image}`} 
                         alt={service.title} 
                         fill
                         className="object-cover"
                       />
-                    </div>
+                    </motion.div>
                   )}
 
                   <div className="mb-8 p-6 bg-teal-accent/5 rounded-2xl border border-teal-accent/10">
@@ -130,7 +151,13 @@ export default function ServicesPage() {
                 
                 <div className="lg:w-1/2 w-full">
                   {service.image ? (
-                    <div className="relative h-[500px] w-full hidden lg:block rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-xl group">
+                    <motion.div 
+                      initial={{ opacity: 0, x: idx % 2 === 1 ? -30 : 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative h-[500px] w-full hidden lg:block rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-xl group"
+                    >
                       <Image 
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${service.image}`} 
                         alt={service.title} 
@@ -139,7 +166,13 @@ export default function ServicesPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-obsidian/40 to-transparent"></div>
                       <div className="absolute bottom-8 left-8">
-                         <div className="bg-white dark:bg-charcoal p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800">
+                         <motion.div 
+                           initial={{ opacity: 0, y: 20 }}
+                           whileInView={{ opacity: 1, y: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ delay: 0.5 }}
+                           className="bg-white dark:bg-charcoal p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800"
+                         >
                             <h4 className="text-lg font-bold mb-4 text-obsidian dark:text-off-white">What's Included:</h4>
                             <ul className="space-y-3">
                               {service.includes.slice(0, 3).map((item, index) => (
@@ -150,11 +183,16 @@ export default function ServicesPage() {
                               ))}
                               <li className="text-teal-accent text-sm font-medium">+ and more</li>
                             </ul>
-                         </div>
+                         </motion.div>
                       </div>
-                    </div>
+                    </motion.div>
                   ) : (
-                    <div className="bg-white dark:bg-charcoal p-8 md:p-12 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm w-full">
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      className="bg-white dark:bg-charcoal p-8 md:p-12 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm w-full"
+                    >
                       <h4 className="text-xl font-bold mb-6 text-obsidian dark:text-off-white">What's Included:</h4>
                       <ul className="space-y-4">
                         {service.includes.map((item, index) => (
@@ -164,7 +202,7 @@ export default function ServicesPage() {
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </motion.div>
                   )}
                   
                   {/* For mobile view when image is present, still show full list */}
@@ -182,7 +220,7 @@ export default function ServicesPage() {
                     </div>
                   )}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -191,13 +229,19 @@ export default function ServicesPage() {
       {/* Final CTA */}
       <section className="section-padding bg-charcoal text-off-white">
         <div className="container-custom text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Need a Custom Solution?</h2>
-          <p className="text-xl text-text-dark/60 mb-10 max-w-2xl mx-auto">
-            Not sure which service is right for you? Let's talk about your business goals and find the best approach.
-          </p>
-          <Link href="/contact" className="btn-primary text-lg">
-            Schedule a Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Need a Custom Solution?</h2>
+            <p className="text-xl text-text-dark/60 mb-10 max-w-2xl mx-auto">
+              Not sure which service is right for you? Let's talk about your business goals and find the best approach.
+            </p>
+            <Link href="/contact" className="btn-primary text-lg">
+              Schedule a Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>

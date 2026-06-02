@@ -1,5 +1,9 @@
+'use client';
+
 import Link from 'next/link';
-import { BookOpen, Users, ArrowRight, CheckCircle, Mail, MapPin, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle, Mail, MapPin } from 'lucide-react';
+import { MeshGradient } from '@/components/MeshGradient';
 
 export default function ContactPage() {
   const faqs = [
@@ -31,16 +35,22 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="section-padding pt-40 md:pt-48 bg-white dark:bg-soft-black">
-        <div className="container-custom">
-          <div className="max-w-3xl animate-in fade-in slide-in-from-bottom duration-1000">
+      <section className="relative section-padding pt-40 md:pt-48 bg-white dark:bg-soft-black overflow-hidden">
+        <MeshGradient className="opacity-30" />
+        <div className="container-custom relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
             <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
               Let's Talk
             </h1>
             <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10">
               Ready to start your project or have questions? We'd love to hear from you.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -49,7 +59,13 @@ export default function ContactPage() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
-            <div className="bg-white dark:bg-charcoal p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 animate-in fade-in duration-1000 delay-200">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="bg-white dark:bg-charcoal p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800"
+            >
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -85,15 +101,25 @@ export default function ContactPage() {
                   <label className="block text-sm font-bold text-obsidian dark:text-off-white mb-2">Message*</label>
                   <textarea rows={5} className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-soft-black/50 focus:ring-2 focus:ring-teal-accent focus:bg-white outline-none transition-all" required></textarea>
                 </div>
-                <button type="submit" className="btn-primary w-full justify-center py-4 text-lg shadow-xl hover:shadow-teal-accent/20">
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit" 
+                  className="btn-primary w-full justify-center py-4 text-lg shadow-xl hover:shadow-teal-accent/20"
+                >
                   Send Message <ArrowRight className="ml-2 w-5 h-5" />
-                </button>
+                </motion.button>
               </form>
-            </div>
+            </motion.div>
 
             {/* Info and Alt Contact */}
             <div className="flex flex-col justify-center">
-              <div className="mb-16">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mb-16"
+              >
                 <h3 className="text-3xl font-bold text-obsidian dark:text-off-white mb-8">Alternative Contact Methods</h3>
                 <div className="space-y-8">
                   <div className="flex items-center gap-6 group">
@@ -102,7 +128,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm font-bold text-obsidian/40 dark:text-off-white/40 uppercase tracking-widest">Email Us</p>
-                      <a href="mailto:hello@schwarzwebconsulting.com" className="text-xl text-text-secondary dark:text-text-dark hover:text-teal-accent font-medium">hello@schwarzwebconsulting.com</a>
+                      <a href="mailto:hello@schwarzwebconsulting.com" className="text-xl text-text-secondary dark:text-text-dark hover:text-teal-accent font-medium transition-colors">hello@schwarzwebconsulting.com</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-6 group">
@@ -115,22 +141,34 @@ export default function ContactPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
                 <h3 className="text-3xl font-bold text-obsidian dark:text-off-white mb-8">What to Expect</h3>
                 <div className="space-y-8 relative before:absolute before:left-[27px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gray-200 dark:before:bg-gray-800">
                   {steps.map((step, idx) => (
-                    <div key={idx} className="relative pl-16 group">
+                    <motion.div 
+                      key={idx}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 * idx }}
+                      className="relative pl-16 group"
+                    >
                       <div className="absolute left-0 top-1 w-14 h-14 rounded-2xl bg-white dark:bg-charcoal border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center font-bold text-xl text-teal-accent z-10 group-hover:border-teal-accent transition-colors">
                         {idx + 1}
                       </div>
                       <h5 className="font-bold text-xl text-obsidian dark:text-off-white mb-1">{step.title}</h5>
                       <p className="text-text-secondary dark:text-text-dark">{step.desc}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -139,16 +177,30 @@ export default function ContactPage() {
       {/* FAQ Section */}
       <section className="section-padding bg-white dark:bg-soft-black">
         <div className="container-custom max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-obsidian dark:text-off-white">Frequently Asked Questions</h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-16 text-center text-obsidian dark:text-off-white"
+          >
+            Frequently Asked Questions
+          </motion.h2>
           <div className="grid gap-6">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="p-8 rounded-3xl border border-gray-100 dark:border-gray-800 hover:border-teal-accent/30 transition-all">
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="p-8 rounded-3xl border border-gray-100 dark:border-gray-800 hover:border-teal-accent/30 transition-all"
+              >
                 <h4 className="text-xl font-bold text-obsidian dark:text-off-white mb-4 flex items-start gap-3">
                    <CheckCircle className="w-6 h-6 text-teal-accent flex-shrink-0 mt-0.5" />
                    {faq.q}
                 </h4>
                 <p className="text-lg text-text-secondary dark:text-text-dark pl-9">{faq.a}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

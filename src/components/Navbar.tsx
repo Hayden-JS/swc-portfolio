@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function Navbar() {
@@ -37,20 +38,32 @@ export default function Navbar() {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
-              className="font-medium hover:text-teal-accent transition-colors relative group"
+          {navLinks.map((link, i) => (
+            <motion.div
+              key={link.name}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
             >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-accent transition-all group-hover:w-full"></span>
-            </Link>
+              <Link 
+                href={link.href} 
+                className="font-medium hover:text-teal-accent transition-colors relative group"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-accent transition-all group-hover:w-full"></span>
+              </Link>
+            </motion.div>
           ))}
           
-          <Link href="/contact" className="btn-primary py-2.5 px-6 text-sm shadow-lg hover:shadow-teal-accent/20">
-            Start a Project
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <Link href="/contact" className="btn-primary py-2.5 px-6 text-sm shadow-lg hover:shadow-teal-accent/20">
+              Start a Project
+            </Link>
+          </motion.div>
         </div>
         
         {/* Mobile menu button */}
@@ -64,29 +77,36 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Navigation Menu */}
-      <div className={`md:hidden absolute top-full left-0 w-full bg-white dark:bg-soft-black border-b border-gray-200 dark:border-gray-800 transition-all duration-300 ease-in-out ${
-        isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'
-      }`}>
-        <div className="container-custom py-8 flex flex-col space-y-6">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
-              className="text-xl font-semibold hover:text-teal-accent transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <Link 
-            href="/contact" 
-            className="btn-primary w-full justify-center py-4"
-            onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-soft-black border-b border-gray-200 dark:border-gray-800 overflow-hidden"
           >
-            Start a Project <ArrowRight className="ml-2 w-5 h-5" />
-          </Link>
-        </div>
-      </div>
+            <div className="container-custom py-8 flex flex-col space-y-6">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  className="text-xl font-semibold hover:text-teal-accent transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <Link 
+                href="/contact" 
+                className="btn-primary w-full justify-center py-4"
+                onClick={() => setIsOpen(false)}
+              >
+                Start a Project <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
