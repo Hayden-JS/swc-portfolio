@@ -16,8 +16,27 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Schwarz Web Consulting | Professional Web Services",
-  description: "High-level web design, SEO, and digital marketing services by SWC.",
+  metadataBase: new URL("https://hayden-js.github.io/swc-portfolio/"),
+  title: {
+    default: "Schwarz Web Consulting | Freelance Web Consultant & Local SEO",
+    template: "%s | Schwarz Web Consulting",
+  },
+  description: "Premium web design, local SEO, and digital marketing for small businesses. Partner with a freelance web consultant who delivers results.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Schwarz Web Consulting — Web Design & Local SEO for Small Business",
+    description: "Strategic web consulting and digital marketing services tailored to help your business grow online. From site design to Google Business Profile management.",
+    url: "https://hayden-js.github.io/swc-portfolio/",
+    siteName: "Schwarz Web Consulting",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
