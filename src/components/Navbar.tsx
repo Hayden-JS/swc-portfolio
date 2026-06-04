@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { MagneticButton } from '@/components/MagneticButton';
+import { cn } from '@/lib/utils';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,31 +28,36 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+    <nav className={cn(
+      "fixed top-0 w-full z-50 transition-all duration-500",
       scrolled 
-        ? 'bg-off-white/90 dark:bg-soft-black/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 py-4' 
-        : 'bg-transparent py-6'
-    }`}>
+        ? "glass-nav py-4 shadow-xl" 
+        : "bg-transparent py-6"
+    )}>
       <div className="container-custom flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold tracking-tight text-obsidian dark:text-off-white group">
-          SWC<span className="text-teal-accent group-hover:animate-pulse">.</span>
+        <Link href="/" className="text-2xl font-bold tracking-tight text-obsidian dark:text-off-white group relative font-display">
+          SWC<span className="text-teal-accent">.</span>
         </Link>
         
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-10">
           {navLinks.map((link, i) => (
             <motion.div
               key={link.name}
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: i * 0.1,
+                ease: [0.16, 1, 0.3, 1]
+              }}
             >
               <Link 
                 href={link.href} 
-                className="font-medium hover:text-teal-accent transition-colors relative group"
+                className="font-medium hover:text-teal-accent transition-colors relative group py-2"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-accent transition-all group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-accent transition-all duration-300 group-hover:w-full"></span>
               </Link>
             </motion.div>
           ))}
@@ -58,21 +65,28 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link href="/contact" className="btn-primary py-2.5 px-6 text-sm shadow-lg hover:shadow-teal-accent/20">
-              Start a Project
-            </Link>
+            <MagneticButton>
+              <Link href="/contact" className="btn-primary py-2.5 px-6 text-sm shadow-lg hover:shadow-teal-accent/20">
+                Start a Project
+              </Link>
+            </MagneticButton>
           </motion.div>
         </div>
         
         {/* Mobile menu button */}
         <button 
-          className="md:hidden text-obsidian dark:text-off-white p-2"
+          className="md:hidden text-obsidian dark:text-off-white p-2 relative z-50"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <motion.div
+            animate={{ rotate: isOpen ? 90 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </motion.div>
         </button>
       </div>
 
@@ -81,28 +95,42 @@ export default function Navbar() {
         {isOpen && (
           <motion.div 
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-soft-black border-b border-gray-200 dark:border-gray-800 overflow-hidden"
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden absolute top-0 left-0 w-full bg-obsidian text-off-white overflow-hidden flex flex-col items-center justify-center"
           >
-            <div className="container-custom py-8 flex flex-col space-y-6">
-              {navLinks.map((link) => (
+            <div className="container-custom py-8 flex flex-col items-center space-y-10">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.05 }}
+                >
+                  <Link 
+                    href={link.href} 
+                    className="text-3xl font-bold hover:text-teal-accent transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + navLinks.length * 0.05 }}
+                className="w-full max-w-xs"
+              >
                 <Link 
-                  key={link.name} 
-                  href={link.href} 
-                  className="text-xl font-semibold hover:text-teal-accent transition-colors"
+                  href="/contact" 
+                  className="btn-primary w-full justify-center py-5 text-xl"
                   onClick={() => setIsOpen(false)}
                 >
-                  {link.name}
+                  Start a Project <ArrowRight className="ml-2 w-6 h-6" />
                 </Link>
-              ))}
-              <Link 
-                href="/contact" 
-                className="btn-primary w-full justify-center py-4"
-                onClick={() => setIsOpen(false)}
-              >
-                Start a Project <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}

@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { BookOpen, Search, ArrowRight, Mail, GraduationCap } from 'lucide-react';
+import { BookOpen, Search, ArrowRight, GraduationCap } from 'lucide-react';
 import { MeshGradient } from '@/components/MeshGradient';
+import { MagneticButton } from '@/components/MagneticButton';
 
 export default function ResourcesPage() {
   const featuredResources = [
@@ -30,12 +31,12 @@ export default function ResourcesPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative section-padding pt-40 md:pt-48 bg-white dark:bg-soft-black overflow-hidden">
+      <section className="relative section-padding pt-40 md:pt-48 bg-white dark:bg-soft-black overflow-hidden min-h-[60vh] flex items-center">
         <MeshGradient className="opacity-40" />
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="container-custom text-center relative z-10"
         >
           <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
@@ -59,11 +60,11 @@ export default function ResourcesPage() {
                 key={index}
                 initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="card group hover:border-teal-accent/30"
+                viewport={{ once: true, margin: "-20%" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="glass-card p-8 rounded-2xl group transition-all"
               >
-                <div className="w-14 h-14 bg-teal-accent/10 rounded-2xl flex items-center justify-center mb-6 text-teal-accent group-hover:bg-teal-accent group-hover:text-obsidian transition-all">
+                <div className="w-14 h-14 bg-teal-accent/10 rounded-2xl flex items-center justify-center mb-6 text-teal-accent group-hover:bg-teal-accent group-hover:text-obsidian transition-all duration-300">
                   <item.icon className="w-8 h-8" />
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-obsidian dark:text-off-white">{item.title}</h2>
@@ -83,7 +84,8 @@ export default function ResourcesPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-20%" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-obsidian dark:text-off-white mb-4">Featured Resources</h2>
               <p className="text-xl text-text-secondary dark:text-text-dark max-w-2xl">
@@ -93,7 +95,8 @@ export default function ResourcesPage() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-20%" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full md:w-auto"
             >
                <input 
@@ -109,11 +112,11 @@ export default function ResourcesPage() {
             {featuredResources.map((resource, index) => (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card group hover:shadow-2xl transition-all duration-500"
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="glass-card p-8 rounded-2xl group hover:shadow-2xl transition-all duration-500"
               >
                 <div className="flex justify-between items-start mb-6">
                    <span className="px-3 py-1 bg-teal-accent/10 text-teal-accent text-xs font-bold uppercase tracking-widest rounded-full">
@@ -142,8 +145,8 @@ export default function ResourcesPage() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="bg-gradient-to-br from-teal-accent to-teal-hover text-obsidian p-12 md:p-20 rounded-[3rem] relative overflow-hidden shadow-2xl"
           >
             <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
@@ -160,14 +163,14 @@ export default function ResourcesPage() {
                   className="flex-grow bg-white px-6 py-5 rounded-2xl border-none shadow-inner focus:ring-4 focus:ring-obsidian/10 outline-none text-lg"
                   required 
                 />
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit" 
-                  className="bg-obsidian text-off-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-soft-black transition-all shadow-xl"
-                >
-                  Subscribe
-                </motion.button>
+                <MagneticButton>
+                  <button 
+                    type="submit" 
+                    className="bg-obsidian text-off-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-soft-black transition-all shadow-xl w-full sm:w-auto"
+                  >
+                    Subscribe
+                  </button>
+                </MagneticButton>
               </form>
             </div>
             {/* Decorative elements */}

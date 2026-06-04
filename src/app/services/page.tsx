@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, Monitor, MapPin, TrendingUp, BadgeCheck } from 'lucide-react';
+import { MeshGradient } from '@/components/MeshGradient';
+import { MagneticButton } from '@/components/MagneticButton';
 
 export default function ServicesPage() {
   const services = [
@@ -81,20 +83,22 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="section-padding pt-40 md:pt-48 bg-white dark:bg-soft-black">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="container-custom text-center"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
-            Our Services
-          </h1>
-          <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10 max-w-3xl mx-auto">
-            Strategic digital solutions built for local business growth.
-          </p>
-        </motion.div>
+      <section className="relative section-padding pt-40 md:pt-48 bg-white dark:bg-soft-black overflow-hidden min-h-[60vh] flex items-center">
+        <MeshGradient className="opacity-50" />
+        <div className="container-custom text-center relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
+              Our Services
+            </h1>
+            <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10 max-w-3xl mx-auto">
+              Strategic digital solutions built for local business growth.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* Services List */}
@@ -113,7 +117,7 @@ export default function ServicesPage() {
               >
                 <div className="lg:w-1/2">
                   <div className="flex items-center gap-4 mb-6">
-                     <div className="w-12 h-12 bg-teal-accent/10 rounded-xl flex items-center justify-center text-teal-accent">
+                     <div className="w-12 h-12 bg-teal-accent/10 rounded-xl flex items-center justify-center text-teal-accent group-hover:bg-teal-accent group-hover:text-obsidian transition-all">
                         <service.icon className="w-6 h-6" />
                      </div>
                      <h2 className="text-3xl md:text-4xl font-bold text-obsidian dark:text-off-white">
@@ -129,6 +133,7 @@ export default function ServicesPage() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                       className="relative h-[300px] w-full mb-8 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 lg:hidden"
                     >
                        <Image 
@@ -140,13 +145,15 @@ export default function ServicesPage() {
                     </motion.div>
                   )}
 
-                  <div className="mb-8 p-6 bg-teal-accent/5 rounded-2xl border border-teal-accent/10">
-                    <h4 className="font-bold text-obsidian dark:text-off-white mb-2">Who It's For:</h4>
+                  <div className="mb-8 p-6 glass-card rounded-2xl">
+                    <h4 className="font-bold text-obsidian dark:text-off-white mb-2">Who It&apos;s For:</h4>
                     <p className="text-text-secondary dark:text-text-dark">{service.for}</p>
                   </div>
-                  <Link href="/contact" className="btn-primary">
-                    {service.cta} <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
+                  <MagneticButton>
+                    <Link href="/contact" className="btn-primary">
+                      {service.cta} <ArrowRight className="ml-2 w-5 h-5" />
+                    </Link>
+                  </MagneticButton>
                 </div>
                 
                 <div className="lg:w-1/2 w-full">
@@ -170,10 +177,10 @@ export default function ServicesPage() {
                            initial={{ opacity: 0, y: 20 }}
                            whileInView={{ opacity: 1, y: 0 }}
                            viewport={{ once: true }}
-                           transition={{ delay: 0.5 }}
+                           transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                            className="bg-white dark:bg-charcoal p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800"
                          >
-                            <h4 className="text-lg font-bold mb-4 text-obsidian dark:text-off-white">What's Included:</h4>
+                            <h4 className="text-lg font-bold mb-4 text-obsidian dark:text-off-white">What&apos;s Included:</h4>
                             <ul className="space-y-3">
                               {service.includes.slice(0, 3).map((item, index) => (
                                 <li key={index} className="flex items-start gap-3 text-sm text-text-secondary dark:text-text-dark">
@@ -191,9 +198,10 @@ export default function ServicesPage() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      className="bg-white dark:bg-charcoal p-8 md:p-12 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm w-full"
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                      className="glass-card p-8 md:p-12 rounded-3xl w-full"
                     >
-                      <h4 className="text-xl font-bold mb-6 text-obsidian dark:text-off-white">What's Included:</h4>
+                      <h4 className="text-xl font-bold mb-6 text-obsidian dark:text-off-white">What&apos;s Included:</h4>
                       <ul className="space-y-4">
                         {service.includes.map((item, index) => (
                           <li key={index} className="flex items-start gap-3 text-text-secondary dark:text-text-dark">
@@ -207,8 +215,8 @@ export default function ServicesPage() {
                   
                   {/* For mobile view when image is present, still show full list */}
                   {service.image && (
-                    <div className="bg-white dark:bg-charcoal p-8 mt-8 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm w-full lg:hidden">
-                      <h4 className="text-xl font-bold mb-6 text-obsidian dark:text-off-white">What's Included:</h4>
+                    <div className="glass-card p-8 mt-8 rounded-3xl w-full lg:hidden">
+                      <h4 className="text-xl font-bold mb-6 text-obsidian dark:text-off-white">What&apos;s Included:</h4>
                       <ul className="space-y-4">
                         {service.includes.map((item, index) => (
                           <li key={index} className="flex items-start gap-3 text-text-secondary dark:text-text-dark">
@@ -227,20 +235,24 @@ export default function ServicesPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="section-padding bg-charcoal text-off-white">
-        <div className="container-custom text-center">
+      <section className="section-padding bg-charcoal text-off-white overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-teal-accent/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="container-custom text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Need a Custom Solution?</h2>
             <p className="text-xl text-text-dark/60 mb-10 max-w-2xl mx-auto">
-              Not sure which service is right for you? Let's talk about your business goals and find the best approach.
+              Not sure which service is right for you? Let&apos;s talk about your business goals and find the best approach.
             </p>
-            <Link href="/contact" className="btn-primary text-lg">
-              Schedule a Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+            <MagneticButton>
+              <Link href="/contact" className="btn-primary text-lg">
+                Schedule a Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </MagneticButton>
           </motion.div>
         </div>
       </section>
