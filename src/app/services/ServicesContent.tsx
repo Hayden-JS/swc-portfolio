@@ -12,6 +12,7 @@ export default function ServicesPage() {
     {
       id: "web-design",
       title: "Website Design & Management",
+      h2: "Design That Works. Management That's Effortless.",
       icon: Monitor,
       description: "Your website is your digital storefront — and first impressions matter. We build high-performance, conversion-focused websites that represent your brand professionally and turn visitors into customers.",
       includes: [
@@ -29,6 +30,7 @@ export default function ServicesPage() {
     {
       id: "seo",
       title: "Local SEO Services",
+      h2: "Be the Name Locals Trust",
       icon: MapPin,
       description: "When customers search for businesses like yours, you need to be found. Our local SEO strategies put your business front and center in search results — so you attract more customers in your service area.",
       includes: [
@@ -46,6 +48,7 @@ export default function ServicesPage() {
     {
       id: "marketing",
       title: "Digital Marketing",
+      h2: "Strategy-Led Marketing That Converts",
       icon: TrendingUp,
       description: "Effective digital marketing reaches the right audience with the right message at the right time. We create strategic campaigns that build brand awareness, drive traffic, and generate leads.",
       includes: [
@@ -63,6 +66,7 @@ export default function ServicesPage() {
     {
       id: "gbp",
       title: "Google Business Profile Management",
+      h2: "Your Google Presence, Fully Managed",
       icon: BadgeCheck,
       description: "Your Google Business Profile is often the first thing customers see when they find you online. We optimize and manage your GBP to maximize visibility, credibility, and customer engagement.",
       includes: [
@@ -92,7 +96,7 @@ export default function ServicesPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
-              Our Services
+              Services Built to <span className="text-teal-accent">Scale Your Visibility</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10 max-w-3xl mx-auto">
               Strategic digital solutions built for local business growth.
@@ -116,12 +120,15 @@ export default function ServicesPage() {
                 className={`scroll-mt-32 flex flex-col gap-12 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
               >
                 <div className="lg:w-1/2">
-                  <div className="flex items-center gap-4 mb-6">
-                     <div className="w-12 h-12 bg-teal-accent/10 rounded-xl flex items-center justify-center text-teal-accent group-hover:bg-teal-accent group-hover:text-obsidian transition-all">
-                        <service.icon className="w-6 h-6" />
-                     </div>
-                     <h2 className="text-3xl md:text-4xl font-bold text-obsidian dark:text-off-white">
-                      {service.title}
+                  <div className="flex flex-col gap-2 mb-6">
+                    <div className="flex items-center gap-4">
+                       <div className="w-10 h-10 bg-teal-accent/10 rounded-lg flex items-center justify-center text-teal-accent transition-all">
+                          <service.icon className="w-5 h-5" />
+                       </div>
+                       <span className="text-teal-accent text-sm font-bold uppercase tracking-widest">{service.title}</span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-obsidian dark:text-off-white">
+                      {service.h2}
                     </h2>
                   </div>
                   <p className="text-xl text-text-secondary dark:text-text-dark mb-8 leading-relaxed">

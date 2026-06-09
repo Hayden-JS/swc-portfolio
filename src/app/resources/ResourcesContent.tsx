@@ -40,10 +40,10 @@ export default function ResourcesPage() {
           className="container-custom text-center relative z-10"
         >
           <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
-            Resources
+            Insights That Make an <span className="text-teal-accent">Impact</span>
           </h1>
           <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10 max-w-3xl mx-auto">
-            Tools, insights, and guidance to help you succeed online.
+            Actionable guides, tips, and insights on web design, local SEO, and digital marketing.
           </p>
         </motion.div>
       </section>

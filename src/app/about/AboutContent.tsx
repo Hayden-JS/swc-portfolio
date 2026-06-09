@@ -41,10 +41,10 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
-              About Schwarz Web Consulting
+              Built for Businesses That <span className="text-teal-accent">Mean Business</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10 max-w-3xl mx-auto">
-              We help local businesses grow through strategic web design, SEO, and digital marketing — with a focus on real results, not just rankings.
+              Schwarz Web Consulting was founded on a simple belief: your online presence should work as hard as you do. We combine sharp design, smart SEO, and hands-on digital strategy to help small and mid-size businesses stand out, get found, and grow.
             </p>
           </motion.div>
         </div>

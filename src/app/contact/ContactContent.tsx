@@ -45,10 +45,10 @@ export default function ContactPage() {
             className="max-w-3xl"
           >
             <h1 className="text-5xl md:text-7xl font-bold text-obsidian dark:text-off-white mb-6">
-              Let&apos;s Talk
+              Let&apos;s Build Something <span className="text-teal-accent">Together</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-secondary dark:text-text-dark mb-10">
-              Ready to start your project or have questions? We&apos;d love to hear from you.
+              Ready to grow? Send us a message and we&apos;ll be in touch within 24 hours.
             </p>
           </motion.div>
         </div>

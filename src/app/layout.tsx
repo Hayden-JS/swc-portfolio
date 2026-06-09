@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -32,6 +33,14 @@ export const metadata: Metadata = {
     siteName: "Schwarz Web Consulting",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/assets/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Schwarz Web Consulting — Premium Web Design & Local SEO",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -51,6 +60,7 @@ export default function RootLayout({
       >
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
