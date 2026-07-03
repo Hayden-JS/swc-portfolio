@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Request a free estimate from Andres Fences & Lawn Services. Serving Austin, Buda, Kyle, Round Rock, and Central Texas. Call (512) 999-5356.",
   alternates: {
-    canonical: "contact",
+    canonical: "contact/",
   },
 };
 

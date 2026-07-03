@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Andres Fences & Lawn Services is a locally owned, family-run fence and lawn care company serving Austin, TX with honest pricing and reliable craftsmanship.",
   alternates: {
-    canonical: "about",
+    canonical: "about/",
   },
 };
 
