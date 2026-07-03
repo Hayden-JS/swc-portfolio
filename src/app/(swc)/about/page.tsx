@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "About | Schwarz Web Consulting — Freelance Web Consultant",
   description: "Meet the independent web consultant behind SWC. Specializing in local SEO, web design, and digital strategy for small and mid-size businesses.",
   alternates: {
-    canonical: "/about",
+    canonical: "/about/",
   },
   openGraph: {
     title: "About Schwarz Web Consulting | Local SEO & Web Design Expert",

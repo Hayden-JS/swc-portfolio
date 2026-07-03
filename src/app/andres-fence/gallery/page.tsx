@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Browse recent fence installations, fence repairs, gates, and lawn maintenance projects completed by Andres Fences & Lawn Services across Central Texas.",
   alternates: {
-    canonical: "gallery",
+    canonical: "gallery/",
   },
 };
 

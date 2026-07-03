@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Services | Web Design, Local SEO & Digital Marketing",
   description: "Explore SWC's full-service offerings: website design & management, local SEO services, digital marketing, and Google Business Profile management.",
   alternates: {
-    canonical: "/services",
+    canonical: "/services/",
   },
   openGraph: {
     title: "SWC Services | Web Design, Local SEO & Digital Marketing Agency",
